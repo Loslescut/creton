@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loslescut</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Powered by Creton Company - Loslescut</h1>
+        <p>Please enter the manufacturer identification tag from the system build and confirm.</p>
+        <div class="input-area">
+            <input type="text" id="codeInput" placeholder="Write here...">
+            <button id="confirmButton">Confirm</button>
+        </div>
+        <div id="resultArea" class="hidden"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const codeInput = document.getElementById('codeInput');
+            const confirmButton = document.getElementById('confirmButton');
+            const resultArea = document.getElementById('resultArea');
+
+            const manufacturerMap = {
+                "19045": "NoNamePC",
+                "29200": "Asus Computer Company",
+                "UP1A": "Samsung Electronic Co.Ltd.",
+                "22000": "Chuwi PcS",
+                "TP1A": "Samsung Electronic Co.Ltd.",
+                "26100": "Acer Laptops Company",
+                "14393": "Barbone Computers Trends",
+                "nepadza": "HP Laptops and Computers"
+            };
+
+            confirmButton.addEventListener('click', function() {
+                const enteredCode = codeInput.value;
+                let result = manufacturerMap[enteredCode] || "Samsung Electronic Co.Ltd.";
+
+                resultArea.textContent = result;
+                resultArea.classList.remove('hidden');
+            });
+
+            codeInput.addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    confirmButton.click();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
